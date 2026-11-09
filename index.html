@@ -31,11 +31,42 @@
 .event-icon svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 .route-art{filter:sepia(.05);opacity:.86;object-fit:contain}
 @media(max-width:600px){.venue-row{grid-template-columns:1fr;gap:6px;padding:24px 0 32px}.venue-art{max-width:330px;order:0}.venue-copy{order:1;padding:8px 4px}.venue-symbol{margin-bottom:8px}.timeline .event{grid-template-columns:55px 30px 1fr;gap:9px}.event-icon{width:28px;height:28px}.venue-copy h3{font-size:1.3rem}}
-</style></head><body><header class="nav-wrap"><nav class="nav"><a class="brand" href="#inicio">CARMEN <em>y</em> NACHO</a><button class="menu-button" id="menuButton" aria-expanded="false" aria-controls="navLinks">☰ Menú</button><div class="nav-links" id="navLinks"><a href="#historia">Nuestra historia</a><a href="#boda">La boda</a><a href="#cronograma">Cronograma</a><a href="#llegar">Cómo llegar</a><a href="#alojamiento">Alojamiento</a><a href="#confirmacion">Confirmación</a></div></nav></header>
+
+/* Galería fotográfica: fundido y zoom muy suave */
+.photo-gallery-section{background:rgba(255,253,248,.38)}
+.photo-gallery{width:min(100%,760px);margin:34px auto 0}
+.gallery-frame{position:relative;overflow:hidden;aspect-ratio:16/10;background:#e9e7dc;border:7px solid rgba(255,253,248,.92);border-radius:28px;box-shadow:0 18px 48px rgba(68,78,61,.15),0 3px 10px rgba(68,78,61,.06)}
+.gallery-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.09);filter:saturate(.94);transition:opacity 1.25s ease,transform 6.2s cubic-bezier(.2,.65,.25,1),filter 1.25s ease;cursor:zoom-in}
+.gallery-photo.is-active{opacity:1;transform:scale(1);filter:saturate(1)}
+.gallery-arrow{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border:1px solid rgba(255,255,255,.82);border-radius:50%;background:rgba(248,246,239,.82);color:#52664f;font-size:1.8rem;line-height:1;cursor:pointer;box-shadow:0 3px 12px rgba(45,55,42,.12);backdrop-filter:blur(8px);transition:background .2s,transform .2s}
+.gallery-arrow:hover{background:#fffdf8;transform:translateY(-50%) scale(1.06)}.gallery-prev{left:14px}.gallery-next{right:14px}
+.gallery-bottom{display:flex;align-items:center;justify-content:center;position:relative;min-height:36px;margin-top:13px}
+.gallery-dots{display:flex;gap:9px;align-items:center}
+.gallery-dot{width:7px;height:7px;padding:0;border:0;border-radius:50%;background:#c7cbbb;cursor:pointer}
+.gallery-dot.is-active{background:#52664f;transform:scale(1.35)}
+.gallery-counter{position:absolute;right:0;color:#858879;font: .65rem Arial,sans-serif;letter-spacing:.12em}
+.gallery-hint{text-align:center;color:var(--muted);font: .65rem Arial,sans-serif;letter-spacing:.06em;margin:8px 0 0}
+@media(max-width:520px){.gallery-frame{aspect-ratio:4/5;border-width:5px;border-radius:22px}.gallery-arrow{width:36px;height:36px}.gallery-counter{position:static;margin-left:14px}}
+@media(prefers-reduced-motion:reduce){.gallery-photo{transition:opacity .2s ease,transform .2s ease}}
+
+
+.photo-lightbox{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;padding:24px;background:rgba(30,34,29,.94);backdrop-filter:blur(12px)}
+.photo-lightbox.open{display:flex}
+.photo-lightbox img{max-width:min(92vw,1100px);max-height:88vh;object-fit:contain;border-radius:22px;box-shadow:0 22px 70px rgba(0,0,0,.35);user-select:none;-webkit-user-drag:none}
+.lightbox-close,.lightbox-arrow{position:absolute;border:1px solid rgba(255,255,255,.35);border-radius:50%;background:rgba(255,255,255,.12);color:#fff;cursor:pointer;display:grid;place-items:center;backdrop-filter:blur(8px)}
+.lightbox-close{top:22px;right:22px;width:44px;height:44px;font-size:1.6rem}
+.lightbox-arrow{top:50%;transform:translateY(-50%);width:48px;height:48px;font-size:2rem}
+.lightbox-prev{left:22px}.lightbox-next{right:22px}
+.lightbox-count{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);color:#fff;font: .72rem Arial,sans-serif;letter-spacing:.18em}
+@media(max-width:600px){.photo-lightbox{padding:12px}.photo-lightbox img{max-width:96vw;max-height:82vh;border-radius:16px}.lightbox-arrow{width:40px;height:40px}.lightbox-prev{left:10px}.lightbox-next{right:10px}}
+@media(prefers-reduced-motion:reduce){.gallery-photo{transition:opacity .2s ease,transform .2s ease,filter .2s ease}}
+
+
+</style></head><body><header class="nav-wrap"><nav class="nav"><a class="brand" href="#inicio">CARMEN <em>y</em> NACHO</a><button class="menu-button" id="menuButton" aria-expanded="false" aria-controls="navLinks">☰ Menú</button><div class="nav-links" id="navLinks"><a href="#historia">Nuestra historia</a><a href="#boda">La boda</a><a href="#cronograma">Cronograma</a><a href="#llegar">Cómo llegar</a><a href="#alojamiento">Alojamiento</a><a href="#confirmacion">Confirmación</a><a href="#listabodas">Lista de Bodas</a></div></nav></header>
 <main><section class="hero" id="inicio"><div class="hero-inner"><div class="kicker">Con mucha ilusión, os invitamos a nuestra boda</div><h1>Carmen <span>y</span> Nacho</h1><div class="date">19 de junio de 2027</div><div class="time">A LAS 17:30 H</div><div class="venue-art">
 <img src="assets/Rama_olivo.png">
 </div><p>Iglesia de San Bartolomé · Jaén</p><p>Nos encantaría compartir contigo un día lleno de cariño, alegría y nuevos recuerdos.</p><!--<div class="actions"><a class="btn" href="#boda">Descubrir la invitación</a></div>--></div></section>
-<section class="section" id="historia"><div class="container"><div class="venue-art1 church-art">
+<section class="section" ><div class="container"><div class="venue-art1 church-art">
 <img src="assets/sobre2.png" alt="Acuarela sobre">
 </div>
 <!--
@@ -44,6 +75,36 @@ Un día para recordar</div><h2>Nuestra historia continúa</h2><p class="intro">D
 -->
 </section>
 <section class="countdown"><div class="container"><div class="eyebrow">Cada vez queda menos</div><h2>La cuenta atrás</h2><p class="intro">Ya estamos contando los días para celebrar juntos.</p><div class="countdown-grid" role="timer" aria-label="Cuenta atrás para la boda"><div class="unit"><span class="num" id="days">—</span><span class="label">Días</span></div><div class="unit"><span class="num" id="hours">—</span><span class="label">Horas</span></div><div class="unit"><span class="num" id="minutes">—</span><span class="label">Minutos</span></div><div class="unit"><span class="num" id="seconds">—</span><span class="label">Segundos</span></div></div><p class="note" id="countdown-message">19 de junio de 2027 · 17:30 h</p></div></section>
+
+<section class="section photo-gallery-section" id="historia">
+  <div class="container">
+    <div class="eyebrow">Nuestros momentos</div>
+    <h2>Un pequeño recorrido por nuestra historia</h2>
+    <p class="intro">Algunos recuerdos que nos han traído hasta aquí. Y los que todavía nos quedan por vivir.</p>
+    <div class="photo-gallery" aria-label="Galería de fotografías de Carmen y Nacho">
+      <div class="gallery-frame">
+        <img class="gallery-photo is-active" src="assets/fotos/carmen-nacho-01.jpg" alt="Carmen y Nacho compartiendo un momento juntos" fetchpriority="low">
+        <img class="gallery-photo" src="assets/fotos/carmen-nacho-02.jpg" alt="Carmen y Nacho al atardecer">
+        <img class="gallery-photo" src="assets/fotos/carmen-nacho-03.jpg" alt="Un recuerdo de Carmen y Nacho">
+        <img class="gallery-photo" src="assets/fotos/carmen-nacho-04.jpg" alt="Carmen y Nacho en un día especial">
+        <button class="gallery-arrow gallery-prev" type="button" aria-label="Fotografía anterior">‹</button>
+        <button class="gallery-arrow gallery-next" type="button" aria-label="Fotografía siguiente">›</button>
+      </div>
+      <div class="gallery-bottom">
+        <div class="gallery-dots" aria-label="Seleccionar fotografía">
+          <button class="gallery-dot is-active" type="button" aria-label="Ver fotografía 1"></button>
+          <button class="gallery-dot" type="button" aria-label="Ver fotografía 2"></button>
+          <button class="gallery-dot" type="button" aria-label="Ver fotografía 3"></button>
+          <button class="gallery-dot" type="button" aria-label="Ver fotografía 4"></button>
+        </div>
+        <span class="gallery-counter" aria-live="polite">01 / 04</span>
+      </div>
+      <p class="gallery-hint">La galería avanza automáticamente · También puedes pasar las fotografías</p>
+    </div>
+  </div>
+</section>
+
+
 <section class="section alt" id="boda"><div class="container"><div class="eyebrow">La boda</div><h2>Nos damos el sí</h2><p class="intro">Un día, dos lugares y muchas ganas de celebrarlo contigo.</p><div class="venue-list">
 <article class="venue-row"><div class="venue-art church-art"><img src="assets/iglesia_n.jpeg" alt="Acuarela de la Iglesia de San Bartolomé de Jaén"></div><div class="venue-copy"><!--<div class="venue-symbol" aria-hidden="true">♡</div>--><div class="eyebrow">La ceremonia</div><h3>Iglesia de<br>San Bartolomé</h3><p class="venue-place">Jaén</p><div class="venue-rule"></div><p class="venue-date">19 de junio de 2027</p><p class="venue-date">A las 17:30 h</p><a class="text-link" href="https://www.google.com/maps/search/?api=1&query=Iglesia+de+San+Bartolom%C3%A9+Ja%C3%A9n" target="_blank" rel="noopener">Cómo llegar <span aria-hidden="true">↗</span></a></div></article>
 <article class="venue-row"><div class="venue-art estate-art"><img src="assets/hacienda_n.jpeg" alt="Acuarela de Finca Vandelvira en Baeza"></div><div class="venue-copy"><div class="venue-symbol" aria-hidden="true">🥂</div><div class="eyebrow">La celebración</div><h3>Finca Vandelvira</h3><p class="venue-place">Baeza, Jaén</p><div class="venue-rule"></div><p class="venue-description">Tras la ceremonia,<br>lo celebraremos juntos con una cena,<br>música y mucho más.</p><a class="text-link" href="https://maps.app.goo.gl/mivqkjuAQsb6egeS7?g_st=iw" target="_blank" rel="noopener">Cómo llegar <span aria-hidden="true">↗</span></a></div></article>
@@ -55,9 +116,81 @@ Un día para recordar</div><h2>Nuestra historia continúa</h2><p class="intro">D
 <section class="section alt" id="confirmacion"><div class="container"><div class="eyebrow">Nos encantará contar contigo</div><h2>¿Nos acompañas?</h2><p class="intro">Confírmanos si podrás venir e indícanos el número de acompañantes y cualquier alergia alimentaria.</p>
 <p class="intro">Debido al horario de la celebración, será una boda sin niños.</p>
 <div class="rsvp"><p>Completa el formulario para ayudarnos a preparar cada detalle.</p><div class="actions"><a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLScRqXpjd9rgKG0qXmNYR87osYfuwMM5e0qgkdL0_4AEK5IWsg/viewform?usp=header" target="_blank" rel="noopener">Confirmar asistencia</a></div></div></div></section>
-<section class="section" id="lista-bodas"><div class="container"><div class="eyebrow">Vuestro cariño es el mejor regalo</div><h2>Lista de bodas</h2><p class="intro">Vuestra presencia es el mejor regalo, pero si queréis ayudarnos en nuestro nuevo comienzo.</p><div class="rsvp"><p class="bank">ES 47 1583 0001 1691 0477 5028
+<section class="section" id="listabodas"><div class="container"><div class="eyebrow">Vuestro cariño es el mejor regalo</div><h2>Lista de bodas</h2><p class="intro">Vuestra presencia es el mejor regalo, pero si queréis ayudarnos en nuestro nuevo comienzo.</p><div class="rsvp"><p class="bank">ES 47 1583 0001 1691 0477 5028
 </p></div></div></section>
 
 </main>
 <footer><div class="names">Carmen <span style="color:#d8ddcf;font-style:italic">y</span> Nacho</div><p>19 DE JUNIO DE 2027 · CON TODO NUESTRO CARIÑO</p></footer>
-<script>const menuButton=document.getElementById('menuButton'),navLinks=document.getElementById('navLinks');menuButton.addEventListener('click',()=>{const open=navLinks.classList.toggle('open');menuButton.setAttribute('aria-expanded',String(open));menuButton.textContent=open?'✕ Cerrar':'☰ Menú'});navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{navLinks.classList.remove('open');menuButton.setAttribute('aria-expanded','false');menuButton.textContent='☰ Menú'}));const target=new Date('2027-06-19T17:30:00+02:00').getTime();function tick(){let d=target-Date.now();if(d<=0){['days','hours','minutes','seconds'].forEach(x=>document.getElementById(x).textContent='0');document.getElementById('countdown-message').textContent='¡Hoy es el gran día!';return}const v={days:Math.floor(d/86400000),hours:Math.floor(d%86400000/3600000),minutes:Math.floor(d%3600000/60000),seconds:Math.floor(d%60000/1000)};Object.entries(v).forEach(([k,n])=>document.getElementById(k).textContent=String(n).padStart(2,'0'))}tick();setInterval(tick,1000);</script></body></html>
+<script>const menuButton=document.getElementById('menuButton'),navLinks=document.getElementById('navLinks');menuButton.addEventListener('click',()=>{const open=navLinks.classList.toggle('open');menuButton.setAttribute('aria-expanded',String(open));menuButton.textContent=open?'✕ Cerrar':'☰ Menú'});navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{navLinks.classList.remove('open');menuButton.setAttribute('aria-expanded','false');menuButton.textContent='☰ Menú'}));const target=new Date('2027-06-19T17:00:00+02:00').getTime();function tick(){let d=target-Date.now();if(d<=0){['days','hours','minutes','seconds'].forEach(x=>document.getElementById(x).textContent='0');document.getElementById('countdown-message').textContent='¡Hoy es el gran día!';return}const v={days:Math.floor(d/86400000),hours:Math.floor(d%86400000/3600000),minutes:Math.floor(d%3600000/60000),seconds:Math.floor(d%60000/1000)};Object.entries(v).forEach(([k,n])=>document.getElementById(k).textContent=String(n).padStart(2,'0'))}tick();setInterval(tick,1000);
+// Galería con transición automática, controles y ampliación de fotografías.
+(() => {
+  const gallery = document.querySelector('.photo-gallery');
+  if (!gallery) return;
+  const images = [...gallery.querySelectorAll('.gallery-photo')];
+  const dots = [...gallery.querySelectorAll('.gallery-dot')];
+  const counter = gallery.querySelector('.gallery-counter');
+  let current = 0;
+  let timer;
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function show(index) {
+    current = (index + images.length) % images.length;
+    images.forEach((img, i) => img.classList.toggle('is-active', i === current));
+    dots.forEach((dot, i) => dot.classList.toggle('is-active', i === current));
+    counter.textContent = String(current + 1).padStart(2, '0') + ' / ' + String(images.length).padStart(2, '0');
+  }
+  function restart() {
+    window.clearInterval(timer);
+    if (lightbox && lightbox.classList.contains('open')) return;
+    if (!reducedMotion) timer = window.setInterval(() => show(current + 1), 5200);
+  }
+  gallery.querySelector('.gallery-prev').addEventListener('click', () => { show(current - 1); restart(); });
+  gallery.querySelector('.gallery-next').addEventListener('click', () => { show(current + 1); restart(); });
+  dots.forEach((dot, i) => dot.addEventListener('click', () => { show(i); restart(); }));
+  const lightbox = document.getElementById('photoLightbox');
+  const lightboxImage = lightbox.querySelector('img');
+  const lightboxCount = lightbox.querySelector('.lightbox-count');
+  let touchStartX = 0;
+  function openLightbox() {
+    lightboxImage.src = images[current].src;
+    lightboxImage.alt = images[current].alt;
+    lightboxCount.textContent = String(current + 1).padStart(2, '0') + ' / ' + String(images.length).padStart(2, '0');
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    window.clearInterval(timer);
+  }
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+    restart();
+  }
+  function moveLightbox(step) {
+    show(current + step);
+    lightboxImage.src = images[current].src;
+    lightboxImage.alt = images[current].alt;
+    lightboxCount.textContent = String(current + 1).padStart(2, '0') + ' / ' + String(images.length).padStart(2, '0');
+  }
+  images.forEach(img => img.addEventListener('click', openLightbox));
+  lightbox.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+  lightbox.querySelector('.lightbox-prev').addEventListener('click', () => moveLightbox(-1));
+  lightbox.querySelector('.lightbox-next').addEventListener('click', () => moveLightbox(1));
+  lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+  lightbox.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, {passive:true});
+  lightbox.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].screenX - touchStartX;
+    if (Math.abs(dx) > 45) moveLightbox(dx < 0 ? 1 : -1);
+  }, {passive:true});
+  document.addEventListener('keydown', e => {
+    if (!lightbox.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight') moveLightbox(1);
+    if (e.key === 'ArrowLeft') moveLightbox(-1);
+  });
+  gallery.addEventListener('mouseenter', () => window.clearInterval(timer));
+  gallery.addEventListener('mouseleave', restart);
+  gallery.addEventListener('focusin', () => window.clearInterval(timer));
+  gallery.addEventListener('focusout', restart);
+  show(0);
+  restart();
+})();
+
+</script></body></html>
